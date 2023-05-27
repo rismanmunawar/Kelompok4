@@ -5,15 +5,15 @@ const Color mainThemeColor = Color(0xFF75A341);
 final List<Attraction> attractionsList = [
   Attraction(
       imgPath:
-      'assets/images/img1.png',
+      'assets/images/img3.jpg',
       name: 'Alhelwah',
       desc: 'All-Inclusive Resort',
       location: 'Jl. Sukalaya II, No. 45',
-      rating: 4,
+      rating: 3,
       price: 80.0),
   Attraction(
       imgPath:
-      'assets/images/img2.png',
+      'assets/images/img1.jpg',
       name: 'Siliwangi Pusat Center',
       desc: 'All-Inclusive Resort',
       price: 90.0,
@@ -21,35 +21,38 @@ final List<Attraction> attractionsList = [
       location: 'Jl. Letnan Harun, No. 48'),
   Attraction(
       imgPath:
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/256931299.jpg?k=57b5fb9732cd89f308def5386e221c46e52f48579345325714a310addf819274&o=&hp=1',
-      name: 'Impressive Punta Cana',
+      'assets/images/img4.jpg',
+      name: 'Kaiku',
       desc: 'All-Inclusive Resort',
-      price: 100.0,
+      location: 'Jl. Ir. H Juanda No. KM 2',
       rating: 5,
-      location: 'Punta Cana, DR'),
+      price: 100.0),
   Attraction(
       imgPath:
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/283750757.jpg?k=4f3437bf1e1b077463c9900e4dd015633db1d96da38f034f4b70a4ba3ef76d82&o=&hp=1',
-      name: 'Villas Mar Azul Dreams',
+      'assets/images/img2.jpg',
+      name: 'Indo Soccer',
       desc: 'All-Inclusive Resort',
-      price: 100.0,
-      rating: 4,
-      location: 'Tallaboa, PR'),
+      price: 150.0,
+      rating: 5,
+      location: 'Jl. Letnan Harun No. 86'),
 ];
+
 final List<BottomBarItem> barItemsList = [
   BottomBarItem(label: 'Home', isSelected: true, icon: Icons.home),
-  BottomBarItem(label: 'Account', isSelected: false, icon: Icons.person),
+  BottomBarItem(label: 'Search', isSelected: false, icon: Icons.search),
   BottomBarItem(label: 'Bookings', isSelected: false, icon: Icons.pending_actions),
   BottomBarItem(label: 'Payments', isSelected: false, icon: Icons.payments),
-  BottomBarItem(label: 'Search', isSelected: false, icon: Icons.search),
+  BottomBarItem(label: 'Account', isSelected: false, icon: Icons.person),
 ];
 
 void main() {
   runApp(
       MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashPage()
-          //home: LandingPage()
+          home: LoginPage(),
+        // home: SplashPage(),
+
+          // home: LandingPage()
       )
   );
 }
@@ -62,7 +65,7 @@ class SplashPage extends StatelessWidget {
 
     Future.delayed(const Duration(seconds: 1), () {
       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => ListPage())
+          MaterialPageRoute(builder: (context) => LandingPage())
       );
     });
 
@@ -107,6 +110,61 @@ class SplashPage extends StatelessWidget {
     );
   }
 }
+
+class LoginPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          iconTheme: const IconThemeData(color: Colors.white),
+          elevation: 0,
+          title:Center(
+            child:Image.asset(
+              'assets/images/football.png', // Ganti dengan path gambar Anda
+              width: 35, // Sesuaikan ukuran gambar
+              height: 35,
+              color: Colors.white, // Jika Anda ingin menerapkan warna pada gambar
+            ),
+          ),
+        ),
+        backgroundColor: mainThemeColor,
+        body: ClipRRect(
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(50),
+                topRight: Radius.circular(50)
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/login.png'), // Ganti dengan path gambar yang sesuai
+                  fit: BoxFit.cover,
+                ),
+                color: Colors.black.withOpacity(0.9),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+              ),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: CircleAvatar(
+                 radius: 25,
+                 backgroundColor: Colors.white,
+                 child: Icon(
+                   Icons.person,
+                   size: 50,
+                   color: Colors.white,
+                 ),
+                )
+              )
+            )
+        )
+    );
+
+  }
+}
+
 class LandingPage extends StatelessWidget {
 
   @override
@@ -129,8 +187,9 @@ class LandingPage extends StatelessWidget {
             Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage('https://images.pexels.com/photos/261394/pexels-photo-261394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
-                        fit: BoxFit.cover
+                        image: AssetImage('assets/images/search.png',),
+                        fit: BoxFit.cover,
+                      alignment: Alignment.center,
                     )
                 )
             ),
@@ -229,8 +288,8 @@ class ListPage extends StatelessWidget {
             title:Center(
               child:Image.asset(
                 'assets/images/football.png', // Ganti dengan path gambar Anda
-                width: 24, // Sesuaikan ukuran gambar
-                height: 24,
+                width: 35, // Sesuaikan ukuran gambar
+                height: 35,
                 color: Colors.white, // Jika Anda ingin menerapkan warna pada gambar
               ),
             ),
@@ -359,7 +418,7 @@ class AttractionCard extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Text('\$${attraction!.price!.toStringAsFixed(2)}',
+                                      Text('\Rp${attraction!.price!.toStringAsFixed(2)}',
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize:16,
@@ -509,4 +568,9 @@ class BottomBarItem {
   IconData? icon;
 
   BottomBarItem({ this.label, this.isSelected, this.icon });
+}
+
+class Utils {
+  static GlobalKey<NavigatorState> mainListNav = GlobalKey();
+  static GlobalKey<NavigatorState> mainAppNav = GlobalKey();
 }

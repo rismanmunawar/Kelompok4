@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 const Color mainThemeColor = Color(0xFF75A341);
@@ -37,9 +39,10 @@ final List<Attraction> attractionsList = [
       location: 'Jl. Letnan Harun No. 86'),
 ];
 
-final List<BottomBarItem> barItemsList = [
+final List<BottomBarItem> barItemsList =  [
+
   BottomBarItem(label: 'Home', isSelected: true, icon: Icons.home),
-  BottomBarItem(label: 'Search', isSelected: false, icon: Icons.search),
+  BottomBarItem(label: 'Search', isSelected: true, icon: Icons.search),
   BottomBarItem(label: 'Bookings', isSelected: false, icon: Icons.pending_actions),
   BottomBarItem(label: 'Payments', isSelected: false, icon: Icons.payments),
   BottomBarItem(label: 'Account', isSelected: false, icon: Icons.person),
@@ -47,11 +50,10 @@ final List<BottomBarItem> barItemsList = [
 
 void main() {
   runApp(
-      MaterialApp(
+      const MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: LoginPage(),
-        // home: SplashPage(),
-
+          // home: LoginPage(),
+        home: SplashPage(),
           // home: LandingPage()
       )
   );
@@ -59,11 +61,13 @@ void main() {
 
 
 class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => LandingPage())
       );
@@ -92,6 +96,12 @@ class SplashPage extends StatelessWidget {
                   decoration: TextDecoration.none,
                   color: Colors.white,
                 ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const CircularProgressIndicator.adaptive(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               )
             ],
           ),
@@ -112,6 +122,8 @@ class SplashPage extends StatelessWidget {
 }
 
 class LoginPage extends StatelessWidget{
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,7 +148,7 @@ class LoginPage extends StatelessWidget{
             ),
             child: Container(
               decoration: BoxDecoration(
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage('assets/images/login.png'), // Ganti dengan path gambar yang sesuai
                   fit: BoxFit.cover,
                 ),
@@ -146,7 +158,7 @@ class LoginPage extends StatelessWidget{
                   topRight: Radius.circular(50),
                 ),
               ),
-              child: Align(
+              child: const Align(
                 alignment: Alignment.topCenter,
                 child: CircleAvatar(
                  radius: 25,
@@ -166,13 +178,15 @@ class LoginPage extends StatelessWidget{
 }
 
 class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
           child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             alignment: Alignment.bottomLeft,
             child: Image.asset(
               'assets/images/football.png', // Replace with the actual image path
@@ -185,7 +199,7 @@ class LandingPage extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/images/search.png',),
                         fit: BoxFit.cover,
@@ -197,13 +211,13 @@ class LandingPage extends StatelessWidget {
             AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              iconTheme: IconThemeData(color: Colors.white),
+              iconTheme: const IconThemeData(color: Colors.white),
             ),
             Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('Football App',
+                  const Text('Football App',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -211,26 +225,26 @@ class LandingPage extends StatelessWidget {
                           fontSize: 30
                       )
                   ),
-                  SizedBox(height: 60),
+                  const SizedBox(height: 60),
                   Image.asset(
                     'assets/images/football.png', // Replace with the actual image path
                     width: 80,
                     height: 80,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text('Choose location to'.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white.withOpacity(0.5))
                   ),
-                  SizedBox(height: 5),
-                  Text('Find a Field', textAlign: TextAlign.center,
+                 const SizedBox(height: 10),
+                 const Text('Find a Field', textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
                           fontWeight: FontWeight.bold
                       )
                   ),
-                  SizedBox(height: 20),
+                 const SizedBox(height: 20),
                   LandingSearchBar()
                 ]
             ),
@@ -241,12 +255,14 @@ class LandingPage extends StatelessWidget {
 }
 
 class LandingSearchBar extends StatelessWidget {
+  const LandingSearchBar({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(left: 30, right: 30),
-        padding: EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 5),
+        margin: const EdgeInsets.only(left: 30, right: 30),
+        padding: const EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 5),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(50)
@@ -254,7 +270,7 @@ class LandingSearchBar extends StatelessWidget {
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Search field', style: TextStyle(color: Colors.grey)),
+             const Text('Search field', style: TextStyle(color: Colors.grey)),
               GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -473,6 +489,8 @@ class AttractionCard extends StatelessWidget {
 }
 
 class BottomBarWidget extends StatefulWidget {
+  const BottomBarWidget({super.key});
+
   @override
   BottomBarWidgetState createState() => BottomBarWidgetState();
 }
@@ -484,7 +502,7 @@ class BottomBarWidgetState extends State<BottomBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 15),
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 15),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
@@ -526,7 +544,7 @@ class BottomBarWidgetState extends State<BottomBarWidget> {
 class RatingWidget extends StatelessWidget {
 
   int? rating;
-  RatingWidget({ this.rating });
+  RatingWidget({super.key,  this.rating });
 
   @override
   Widget build(BuildContext context) {

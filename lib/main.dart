@@ -54,6 +54,7 @@ void main() {
           debugShowCheckedModeBanner: false,
           // home: LoginPage(),
         home: SplashPage(),
+        //   home: RegisterPage()
           // home: LandingPage()
       )
   );
@@ -69,7 +70,7 @@ class SplashPage extends StatelessWidget {
 
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => LandingPage())
+          MaterialPageRoute(builder: (context) => const LoginPage())
       );
     });
 
@@ -124,6 +125,12 @@ class SplashPage extends StatelessWidget {
 class LoginPage extends StatelessWidget{
   const LoginPage({super.key});
 
+  void navigateToRegisterPage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => const RegisterPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,12 +141,13 @@ class LoginPage extends StatelessWidget{
           title:Center(
             child:Image.asset(
               'assets/images/football.png', // Ganti dengan path gambar Anda
-              width: 35, // Sesuaikan ukuran gambar
-              height: 35,
+              width: 40, // Sesuaikan ukuran gambar
+              height: 40,
               color: Colors.white, // Jika Anda ingin menerapkan warna pada gambar
             ),
           ),
         ),
+
         backgroundColor: mainThemeColor,
         body: ClipRRect(
             borderRadius: const BorderRadius.only(
@@ -158,28 +166,413 @@ class LoginPage extends StatelessWidget{
                   topRight: Radius.circular(50),
                 ),
               ),
-              child: const Align(
+              child: Align(
                 alignment: Alignment.topCenter,
-                child: CircleAvatar(
-                 radius: 25,
-                 backgroundColor: Colors.white,
-                 child: Icon(
-                   Icons.person,
-                   size: 50,
-                   color: Colors.white,
-                 ),
-                )
-              )
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 50),
+                      width: 75,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.transparent,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 5,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.person,
+                        size: 61,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: const Text(
+                        'Welcome to Football App',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: const Text(
+                        'Please Login',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 400,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10, right: 5),
+                            child: Icon(
+                              Icons.email,
+                              color: Color(0xFF75A341),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              textAlign: TextAlign.left,
+                              decoration: InputDecoration(
+                                hintText: 'Email',
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 400,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10, right: 5),
+                            child: Icon(
+                              Icons.lock,
+                              color: Color(0xFF75A341),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              textAlign: TextAlign.left,
+                              decoration: InputDecoration(
+                                hintText: 'Password',
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                              ),
+                              obscureText: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 400,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Logika untuk melakukan login
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xFF75A341),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: const Text('Login',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Expanded(child: SizedBox()), // Untuk mengisi ruang di antara tombol Login dan teks "Don't have an Account?"
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Column(
+                        children: [
+                          const Text(
+                            "Don't have an Account?",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              // Logika untuk pindah ke halaman registrasi
+                              navigateToRegisterPage(context);
+                            },
+                            child: const Text(
+                              'Register',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
             )
         )
     );
-
   }
 }
 
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
+
+  void navigateToLoginPage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 0,
+        title: Center(
+          child: Image.asset(
+            'assets/images/football.png',
+            width: 35,
+            height: 35,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      backgroundColor: mainThemeColor,
+      body: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(50),
+          topRight: Radius.circular(50),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            image: const DecorationImage(
+              image: AssetImage('assets/images/login.png'),
+              fit: BoxFit.cover,
+            ),
+            color: Colors.black.withOpacity(0.9),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
+            ),
+          ),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  width: 75,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 5,
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.person,
+                    size: 61,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: const Text(
+                    'Create an Account',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: 400,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: const Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 5),
+                        child: Icon(
+                          Icons.email,
+                          color: Color(0xFF75A341),
+                        ),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            hintText: 'Email',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: 400,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: const Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 5),
+                        child: Icon(
+                          Icons.lock,
+                          color: Color(0xFF75A341),
+                        ),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            hintText: 'Password',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          ),
+                          obscureText: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: 400,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: const Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 5),
+                        child: Icon(
+                          Icons.lock,
+                          color: Color(0xFF75A341),
+                        ),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            hintText: 'Confirm Password',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          ),
+                          obscureText: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: 400,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Logika untuk melakukan registrasi
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xFF75A341),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: const Text('Register',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const Expanded(child: SizedBox()), // Untuk mengisi ruang di antara tombol Register dan teks "Already have an Account?"
+                Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Already have an Account?",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // Logika untuk pindah ke halaman login
+                          navigateToLoginPage(context);
+                        },
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
-
 
   @override
   Widget build(BuildContext context) {

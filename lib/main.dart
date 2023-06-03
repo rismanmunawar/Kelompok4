@@ -53,9 +53,9 @@ void main() {
       const MaterialApp(
           debugShowCheckedModeBanner: false,
           // home: LoginPage(),
-        home: SplashPage(),
+        // home: SplashPage(),
         //   home: RegisterPage()
-          // home: LandingPage()
+          home: ProfilePage()
       )
   );
 }
@@ -63,17 +63,13 @@ void main() {
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
-
-
   @override
   Widget build(BuildContext context) {
-
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const LoginPage())
+          MaterialPageRoute(builder: (context) => const LandingPage())
       );
     });
-
     return Stack(
       children: [
         Container(
@@ -107,8 +103,6 @@ class SplashPage extends StatelessWidget {
             ],
           ),
         ),
-
-
         Align(
             alignment: Alignment.bottomCenter,
             child: LinearProgressIndicator(
@@ -147,7 +141,6 @@ class LoginPage extends StatelessWidget{
             ),
           ),
         ),
-
         backgroundColor: mainThemeColor,
         body: ClipRRect(
             borderRadius: const BorderRadius.only(
@@ -220,7 +213,7 @@ class LoginPage extends StatelessWidget{
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
                       ),
-                      child: const Row(
+                      child: Row(
                         children: [
                           Padding(
                             padding: EdgeInsets.only(left: 10, right: 5),
@@ -250,7 +243,7 @@ class LoginPage extends StatelessWidget{
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
                       ),
-                      child: const Row(
+                      child: Row(
                         children: [
                           Padding(
                             padding: EdgeInsets.only(left: 10, right: 5),
@@ -330,7 +323,6 @@ class LoginPage extends StatelessWidget{
                   ],
                 ),
               ),
-
             )
         )
     );
@@ -339,14 +331,11 @@ class LoginPage extends StatelessWidget{
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
-
-
   void navigateToLoginPage(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => const LoginPage()),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -423,7 +412,7 @@ class RegisterPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(left: 10, right: 5),
@@ -453,7 +442,7 @@ class RegisterPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(left: 10, right: 5),
@@ -484,7 +473,7 @@ class RegisterPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(left: 10, right: 5),
@@ -570,10 +559,8 @@ class RegisterPage extends StatelessWidget {
   }
 }
 
-
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -649,8 +636,6 @@ class LandingPage extends StatelessWidget {
 
 class LandingSearchBar extends StatelessWidget {
   const LandingSearchBar({super.key});
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -678,7 +663,6 @@ class LandingSearchBar extends StatelessWidget {
                       )
                   )
               )
-
             ]
         )
     );
@@ -686,7 +670,6 @@ class LandingSearchBar extends StatelessWidget {
 }
 
 class ListPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -702,7 +685,6 @@ class ListPage extends StatelessWidget {
                 color: Colors.white, // Jika Anda ingin menerapkan warna pada gambar
               ),
             ),
-
             actions: [
               Container(
                   margin: const EdgeInsets.only(right: 15),
@@ -898,7 +880,6 @@ class BottomBarWidgetState extends State<BottomBarWidget> {
         padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 15),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
             //... rest of the code omitted for brevity ...
             children: List.generate(
                 barItems.length,
@@ -926,9 +907,6 @@ class BottomBarWidgetState extends State<BottomBarWidget> {
                       )
                   );
                 })
-
-
-
         )
     );
   }
@@ -959,6 +937,124 @@ class RatingWidget extends StatelessWidget {
             )
         )
       ],
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget{
+  const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Color(0xFF75A341),
+          iconTheme: const IconThemeData(color: Colors.black),
+          elevation: 0,
+          title:Center(
+            child:Image.asset(
+              'assets/images/football.png', // Ganti dengan path gambar Anda
+              width: 35, // Sesuaikan ukuran gambar
+              height: 35,
+              color: Colors.white, // Jika Anda ingin menerapkan warna pada gambar
+            ),
+          ),
+          actions: [
+
+          ]
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              SizedBox(
+                width: 120,
+                height: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: const Image(image: AssetImage('assets/images/user.png')),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text("Ibnu Tajuddin"),
+              Text("tajuddinibnu@gmail.com"),
+              const SizedBox(height: 10),
+              SizedBox(
+                  width: 200,
+                  child: ElevatedButton(
+                      onPressed: (){},
+                      child: const Text("Edit Profile"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,side: BorderSide.none, shape: const StadiumBorder()),
+                  ),
+              ),
+              const SizedBox(height: 30),
+              const Divider(),
+              const SizedBox(height: 10),
+
+            //  Menu
+              ProfileMenuWidget(),
+              ProfileMenuWidget(),
+              ProfileMenuWidget(),
+              ProfileMenuWidget(),
+              ProfileMenuWidget(),
+
+            ],
+          ),
+
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileMenuWidget extends StatelessWidget {
+  const ProfileMenuWidget({
+  Key? key,
+    required this.title,
+    required this.icon,
+    required this.onPress,
+    this.endIcon = true,
+    this.textcolor,
+  }):super(key: key);
+
+  final String title;
+  final IconData icon;
+  final VoidCallback onPress;
+  final bool endIcon;
+  final Color? textcolor;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Color(0xFF75A341).withOpacity(0.10),
+        ),
+        child: Icon(
+          Icons.settings, // Menggunakan ikon "cog" (roda gigi)
+          size: 18, // Atur ukuran ikon menjadi 30
+          color: Colors.blue, // Atur warna ikon menjadi biru
+        ),
+      ),
+      title: Text("Setting", style: Theme.of(context).textTheme.bodyLarge),
+      trailing: Container(
+        width: 30,
+        height: 30,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.grey.withOpacity(0.1),
+        ),
+        child: Icon(
+          Icons.arrow_forward, // Menggunakan ikon "cog" (roda gigi)
+          size: 18, // Atur ukuran ikon menjadi 30
+          color: Colors.blue, // Atur warna ikon menjadi biru
+        ),
+      ),
     );
   }
 }

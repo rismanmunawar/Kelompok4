@@ -946,6 +946,7 @@ class ProfilePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    var title;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xFF75A341),
@@ -977,32 +978,31 @@ class ProfilePage extends StatelessWidget{
                 ),
               ),
               const SizedBox(height: 10),
-              Text("Ibnu Tajuddin"),
-              Text("tajuddinibnu@gmail.com"),
-              const SizedBox(height: 10),
+              Text("Coding Tech"),
+              Text("superadmin@gmail.com"),
+              const SizedBox(height: 15),
               SizedBox(
-                  width: 200,
+                  width: 150,
+                  height: 35,
                   child: ElevatedButton(
                       onPressed: (){},
-                      child: const Text("Edit Profile"),
+                      child: const Text("Edit Profile", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,side: BorderSide.none, shape: const StadiumBorder()),
+                    backgroundColor: Colors.yellow,side: BorderSide.none, shape: const StadiumBorder()),
                   ),
               ),
               const SizedBox(height: 30),
-              const Divider(),
-              const SizedBox(height: 10),
+              const SizedBox(height: 30),
 
             //  Menu
-              ProfileMenuWidget(),
-              ProfileMenuWidget(),
-              ProfileMenuWidget(),
-              ProfileMenuWidget(),
-              ProfileMenuWidget(),
-
+              ProfileMenuWidget(title: "Account", icon: Icons.account_circle, onPress: () {}),
+              ProfileMenuWidget(title: "History", icon: Icons.history, onPress: () {}),
+              ProfileMenuWidget(title: "Delete Account", icon: Icons.no_accounts_rounded, onPress: () {}),
+              ProfileMenuWidget(title: "Setting", icon: Icons.settings, onPress: () {}),
+              const Divider(),
+              ProfileMenuWidget(title: "Logout", icon: Icons.logout, onPress: () {}),
             ],
           ),
-
         ),
       ),
     );
@@ -1027,6 +1027,8 @@ class ProfileMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return ListTile(
       leading: Container(
         width: 40,
@@ -1035,14 +1037,14 @@ class ProfileMenuWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           color: Color(0xFF75A341).withOpacity(0.10),
         ),
-        child: Icon(
-          Icons.settings, // Menggunakan ikon "cog" (roda gigi)
+        child: Icon(icon, // Menggunakan ikon "cog" (roda gigi)
           size: 18, // Atur ukuran ikon menjadi 30
           color: Colors.blue, // Atur warna ikon menjadi biru
         ),
       ),
-      title: Text("Setting", style: Theme.of(context).textTheme.bodyLarge),
-      trailing: Container(
+
+      title: Text(title,  style: Theme.of(context).textTheme.bodyText1),
+      trailing: endIcon? Container(
         width: 30,
         height: 30,
         decoration: BoxDecoration(
@@ -1054,10 +1056,12 @@ class ProfileMenuWidget extends StatelessWidget {
           size: 18, // Atur ukuran ikon menjadi 30
           color: Colors.blue, // Atur warna ikon menjadi biru
         ),
-      ),
+      ) : null,
     );
+
   }
 }
+
 
 class Attraction {
   String? imgPath;

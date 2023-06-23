@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.menu,
+                            Icons.home,
                             color: currentTab == 0 ? Colors.green : Colors.grey,
                           ),
                           Text(
@@ -116,12 +116,12 @@ class _HomeState extends State<Home> {
                         children: [
                           Icon(
                             Icons.payment,
-                            color: currentTab == 2 ? Colors.blue : Colors.grey,
+                            color: currentTab == 2 ? Colors.green : Colors.grey,
                           ),
                           Text(
                             'Payment',
                             style: TextStyle(
-                              color: currentTab == 2 ? Colors.blue : Colors.grey,
+                              color: currentTab == 2 ? Colors.green : Colors.grey,
                             ),
                           )
                         ],
@@ -142,12 +142,12 @@ class _HomeState extends State<Home> {
                         children: [
                           Icon(
                             Icons.person,
-                            color: currentTab == 3 ? Colors.blue : Colors.grey,
+                            color: currentTab == 3 ? Colors.green : Colors.grey,
                           ),
                           Text(
                             'Profile',
                             style: TextStyle(
-                              color: currentTab == 3 ? Colors.blue : Colors.grey,
+                              color: currentTab == 3 ? Colors.green : Colors.grey,
                             ),
                           )
                         ],

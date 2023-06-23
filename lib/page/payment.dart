@@ -18,12 +18,12 @@ class _PaymentState extends State<Payment> {
   TimeOfDay? selectedTime;
 
   List<Map<String, String>> banks = [
-    {'name': 'Bank A', 'image': 'assets/images/bank_a.png'},
-    {'name': 'Bank B', 'image': 'assets/images/bank_b.png'},
-    {'name': 'Bank C', 'image': 'assets/images/bank_c.png'},
-    {'name': 'Bank D', 'image': 'assets/images/bank_d.png'},
-    {'name': 'Bank E', 'image': 'assets/images/bank_e.png'},
-    {'name': 'Bank F', 'image': 'assets/images/bank_f.png'},
+    {'name': 'BCA', 'image': 'assets/images/bca.png'},
+    {'name': 'BRI', 'image': 'assets/images/brimo.png'},
+    {'name': 'Dana', 'image': 'assets/images/dana.png'},
+    {'name': 'Gopay', 'image': 'assets/images/gopay.png'},
+    {'name': 'Flip', 'image': 'assets/images/flip.png'},
+    {'name': 'OVO', 'image': 'assets/images/ovo.png'},
   ];
 
   @override
@@ -72,7 +72,7 @@ class _PaymentState extends State<Payment> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Text(
-                  'Pilih Bank / Virtual Account:',
+                  'Pilih Bank / Metode Pembayaran:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),

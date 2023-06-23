@@ -20,8 +20,8 @@ class _LoginState extends State<Login> {
   TextEditingController passwordController = TextEditingController();
 
   void login() {
-    const String validEmail = 'cek@gmail.com';
-    const String validPassword = 'cek';
+    const String validEmail = 'admin@gmail.com';
+    const String validPassword = 'admin';
 
     if (emailController.text == validEmail && passwordController.text == validPassword) {
       Navigator.pushReplacement(

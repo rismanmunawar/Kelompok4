@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'page/dashboard.dart';
-import 'page/search.dart';
 import 'page/payment.dart';
 import 'page/booking.dart';
 import 'page/profile.dart';
@@ -16,7 +15,6 @@ class _HomeState extends State<Home> {
   int currentTab = 0;
   final List<Widget> screens = [
     Dashboard(),
-    Search(),
     Payment(),
     Booking(),
     Profile()
@@ -109,7 +107,7 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = Search();
+                          currentScreen = Payment();
                           currentTab = 2;
                         });
                       },
@@ -117,11 +115,11 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.search,
+                            Icons.payment,
                             color: currentTab == 2 ? Colors.blue : Colors.grey,
                           ),
                           Text(
-                            'Search',
+                            'Payment',
                             style: TextStyle(
                               color: currentTab == 2 ? Colors.blue : Colors.grey,
                             ),
@@ -135,7 +133,7 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = Payment();
+                          currentScreen = Profile();
                           currentTab = 3;
                         });
                       },
@@ -143,39 +141,13 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.payment,
-                            color: currentTab == 3 ? Colors.blue : Colors.grey,
-                          ),
-                          Text(
-                            'Payment',
-                            style: TextStyle(
-                              color: currentTab == 3 ? Colors.blue : Colors.grey,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: MaterialButton(
-                      minWidth: 40,
-                      onPressed: () {
-                        setState(() {
-                          currentScreen = Profile();
-                          currentTab = 4;
-                        });
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
                             Icons.person,
-                            color: currentTab == 4 ? Colors.blue : Colors.grey,
+                            color: currentTab == 3 ? Colors.blue : Colors.grey,
                           ),
                           Text(
                             'Profile',
                             style: TextStyle(
-                              color: currentTab == 4 ? Colors.blue : Colors.grey,
+                              color: currentTab == 3 ? Colors.blue : Colors.grey,
                             ),
                           )
                         ],

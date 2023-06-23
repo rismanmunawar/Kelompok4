@@ -15,8 +15,8 @@ class Attraction {
   final double price;
   final String location;
   final int rating;
-  final String announcement1; // Added announcement field
-  final String announcement2; // Added announcement field
+  final String announcement1;
+  final String announcement2;
 
   Attraction({
     required this.imgPath,
@@ -25,8 +25,8 @@ class Attraction {
     required this.price,
     required this.location,
     required this.rating,
-    required this.announcement1, // Added announcement field
-    required this.announcement2, // Added announcement field
+    required this.announcement1,
+    required this.announcement2,
   });
 }
 
@@ -42,6 +42,8 @@ class _DashboardState extends State<Dashboard> {
   double selectedDuration = 1;
   DateTime selectedDate = DateTime.now();
   double totalCost = 0;
+
+  int notificationCount = 1; // Jumlah notifikasi
 
   final List<Attraction> attractionsList = [
     Attraction(
@@ -90,20 +92,57 @@ class _DashboardState extends State<Dashboard> {
     ),
   ];
 
+  List<Attraction> filteredAttractions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredAttractions = attractionsList;
+  }
+
+  void searchAttractions(String query) {
+    setState(() {
+      filteredAttractions = attractionsList
+          .where((attraction) =>
+          attraction.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.green),
         elevation: 0,
-        title: Center(
-          child: Image.asset(
-            'assets/images/football.png',
-            width: 35,
-            height: 35,
-            color: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 15, right: 15),
+          child: Container(
+            width: double.infinity,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.search, color: Colors.white),
+                  ),
+                  onChanged: (query) {
+                    searchAttractions(query);
+                  },
+                ),
+              ),
+            ),
           ),
         ),
         actions: [
@@ -135,9 +174,9 @@ class _DashboardState extends State<Dashboard> {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: attractionsList.length,
+                  itemCount: filteredAttractions.length,
                   itemBuilder: (context, index) {
-                    Attraction attr = attractionsList[index];
+                    Attraction attr = filteredAttractions[index];
                     return InkWell(
                       onTap: () {
                         Navigator.push(
@@ -159,6 +198,7 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
+
 
 class AttractionCard extends StatelessWidget {
   final Attraction? attraction;

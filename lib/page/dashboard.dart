@@ -43,7 +43,6 @@ class _DashboardState extends State<Dashboard> {
   DateTime selectedDate = DateTime.now();
   double totalCost = 0;
 
-  int notificationCount = 1; // Jumlah notifikasi
 
   final List<Attraction> attractionsList = [
     Attraction(
